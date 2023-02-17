@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Búsqueda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/apps/style.css">
+    <script src="/apps/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="top">
+      <h1>Busca una Película</h1>
+      <img id="image">
+    </div>
+    
+    <form class="form" action="/form">
+      <label for="postname">Nombre:</label><br>
+      <input type="text" id="postname" name="s" value="John" placeholder="Ingresa el nombre" required><br>
+      <input class="btn" type="button" value="Buscar" onclick="loadPostMsg(postname)">
+    </form>
+      <div class="container" id="postrespmsg"></div>
+  </body>
+</html>
