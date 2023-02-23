@@ -98,9 +98,7 @@ public class HttpServer {
                     outputLine = staticFiles.getFile("/apps/form.html");
                     } else if (request.startsWith("/spring/")) { // Métodos inyectados
                         System.out.println("ME METÍ");
-                        outputLine = "HTTP/1.1 200 OK\r\n" +
-                                "Content-type: text/html\r\n" +
-                                "\r\n" + methods.get(request.substring(7)).invoke(null);
+                        outputLine = "" + methods.get(request.substring(7)).invoke(null);
                         System.out.println(outputLine);
                     } else if (staticFiles.checkFile(request)) {
                         System.out.println("ESTÁ EN STATIC");
