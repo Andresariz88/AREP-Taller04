@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,20 +37,19 @@ public class HttpServer {
      * Method that starts the server and handle the requests according to what is required
      * @throws IOException
      */
-    public void run(String[] args) throws IOException, ClassNotFoundException {
-        String className = args[0];
-        // Cargar clase con forName
-        Class<?> c = Class.forName(className);
-        Method[] classMethos = c.getMethods();
-        // Extraer métodos con @RequestMapping
-        for (Method m : classMethos) {  // Extraer una instacia del método
-            if (m.isAnnotationPresent(RequestMapping.class)) {
-                String path = m.getAnnotation(RequestMapping.class).value(); // Extraer el valor del path (value de la anotación)
-                methods.put(path, m); // Poner en la tabla el método con llave path
-            }
-        }
+    public void run(List<String> args) throws IOException, ClassNotFoundException {
 
-        System.out.println(methods);
+            for (String className : args) {
+                // Cargar clase con forName
+                Class<?> c = Class.forName(className);
+                Method[] classMethos = c.getMethods();
+                for (Method m : classMethos) {  // Extraer una instancia del método
+                    if (m.isAnnotationPresent(RequestMapping.class)) { // Extraer métodos con @RequestMapping
+                        String path = m.getAnnotation(RequestMapping.class).value(); // Extraer el valor del path (value de la anotación)
+                        methods.put(path, m); // Poner en la tabla el método con llave path
+                    }
+                }
+            }
 
         ServerSocket serverSocket = null;
         try {
@@ -96,11 +96,12 @@ public class HttpServer {
                 try {
                     if (request.equalsIgnoreCase("/")) {
                     outputLine = staticFiles.getFile("/apps/form.html");
-                    } else if (request.startsWith("/apps/")) {
+                    } else if (request.startsWith("/spring/")) { // Métodos inyectados
                         System.out.println("ME METÍ");
                         outputLine = "HTTP/1.1 200 OK\r\n" +
                                 "Content-type: text/html\r\n" +
-                                "\r\n" + methods.get(request.substring(5)).invoke(null);
+                                "\r\n" + methods.get(request.substring(7)).invoke(null);
+                        System.out.println(outputLine);
                     } else if (staticFiles.checkFile(request)) {
                         System.out.println("ESTÁ EN STATIC");
                         outputLine = staticFiles.getFile(request);
