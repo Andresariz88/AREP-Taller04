@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-public class WebApp {
+public class WebApp { //java -cp target/classes edu.eci.arep.webapps.WebApp
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         HttpServer server = HttpServer.getInstance();
 
