@@ -36,7 +36,7 @@ mvn package
 
 Para iniciar el servidor web basta con ejecutar el main de la clase HttpServer o ingresar el siguiente comando en el terminal:
 ```
-mvn exec:java
+java -cp target/classes edu.eci.arep.webapps.WebApp
 ```
 
 Para usarlo simplemente ingresa la siguiente URL en la barra de búsqueda de tu navegador web:
