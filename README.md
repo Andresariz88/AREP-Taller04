@@ -25,7 +25,7 @@ Para hacer uso de la aplicación necesitarás tener instalado el siguiente softw
 Para obtener una copia de la aplicación deberás clonar este repositorio. Ingresa la siguiente instrucción en Git Bash:
 
 ```
-git clone https://github.com/Andresariz88/AREP-Taller01
+git clone https://github.com/Andresariz88/AREP-Taller04
 ```
 
 Luego, ejecuta el siguiente comando para compilar y empaquetar todo el proyecto:
